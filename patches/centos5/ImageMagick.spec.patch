@@ -1,0 +1,11 @@
+--- ImageMagick.spec.org 2016-05-05 02:19:47.933101754 +0000
++++ ImageMagick.spec     2016-05-05 02:19:56.322970600 +0000
+@@ -12,7 +12,7 @@
+
+ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:  bzip2-devel, freetype-devel, libjpeg-devel, libpng-devel
+-BuildRequires:  libtiff-devel, giflib-devel, zlib-devel, perl-devel
++BuildRequires:  libtiff-devel, giflib-devel, zlib-devel, perl
+ BuildRequires:  ghostscript-devel, djvulibre-devel
+ BuildRequires:  libwmf-devel, jasper-devel, libtool-ltdl-devel
+ BuildRequires:  libX11-devel, libXext-devel, libXt-devel

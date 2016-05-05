@@ -1,0 +1,6 @@
+centos5:
+  dockerfile: Dockerfile.centos5
+  build: .
+  command: cp -a /root/rpmbuild/RPMS/x86_64/ImageMagick-6.5.4-10.rpm /tmp/ImageMagick-6.5.4-10.rpm
+  volumes:
+    - .:/tmp:rw

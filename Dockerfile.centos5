@@ -1,0 +1,37 @@
+FROM centos:5
+MAINTAINER hfm.garden@gmail.com
+
+RUN yum -q -y install epel-release
+RUN yum -q -y install rpmdevtools yum-utils \
+      perl \
+      bzip2-devel \
+      freetype-devel \
+      libjpeg-devel \
+      libpng-devel \
+      libtiff-devel \
+      giflib-devel \
+      zlib-devel \
+      ghostscript-devel \
+      libwmf-devel \
+      libtool-ltdl-devel \
+      libX11-devel \
+      libXext-devel \
+      libXt-devel \
+      lcms-devel \
+      libxml2-devel \
+      librsvg2-devel
+RUN wget -nv http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm && \
+      rpm -U rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm && \
+      rm -f rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
+RUN yum -q -y --enablerepo=rpmforge install djvulibre-devel jasper-devel
+
+RUN rpmdev-setuptree
+
+ADD SRPMS/ImageMagick-6.5.4-10.src.rpm /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
+RUN rpm -i --nomd5 /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
+
+WORKDIR /root/rpmbuild/SPECS
+ADD patches/centos5/ImageMagick.spec.patch /root/rpmbuild/SPECS/ImageMagick.spec.patch
+RUN patch -p0 < ImageMagick.spec.patch
+
+RUN rpmbuild -ba ImageMagick.spec
