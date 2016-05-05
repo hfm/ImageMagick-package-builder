@@ -27,7 +27,7 @@ RUN yum -q -y --enablerepo=rpmforge install djvulibre-devel jasper-devel
 
 RUN rpmdev-setuptree
 
-ADD SRPMS/ImageMagick-6.5.4-10.src.rpm /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
+run wget -nv http://imagemagick.org/download/linux/SRPMS/releases/ImageMagick-6.5.4-10.src.rpm -O /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
 RUN rpm -i --nomd5 /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
 
 WORKDIR /root/rpmbuild/SPECS
