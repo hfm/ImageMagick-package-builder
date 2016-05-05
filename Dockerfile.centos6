@@ -2,7 +2,7 @@ FROM centos:6
 MAINTAINER hfm.garden@gmail.com
 
 RUN yum -q -y install epel-release
-RUN yum -q -y install gcc rpmdevtools yum-utils
+RUN yum -q -y install gcc gcc-c++ rpmdevtools yum-utils
 
 RUN rpmdev-setuptree
 
