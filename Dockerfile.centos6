@@ -1,0 +1,11 @@
+FROM centos:6
+MAINTAINER hfm.garden@gmail.com
+
+RUN yum -q -y install epel-release
+RUN yum -q -y install gcc gcc-c++ rpmdevtools yum-utils
+
+RUN rpmdev-setuptree
+
+run wget -nv http://imagemagick.org/download/linux/SRPMS/releases/ImageMagick-6.5.4-10.src.rpm -O /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
+RUN yum-builddep -q -y --nogpgcheck /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm
+RUN rpmbuild --quiet --rebuild /root/rpmbuild/SRPMS/ImageMagick-6.5.4-10.src.rpm

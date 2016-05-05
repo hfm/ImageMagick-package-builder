@@ -34,4 +34,4 @@ WORKDIR /root/rpmbuild/SPECS
 ADD patches/centos5/ImageMagick.spec.patch /root/rpmbuild/SPECS/ImageMagick.spec.patch
 RUN patch -p0 < ImageMagick.spec.patch
 
-RUN rpmbuild -ba ImageMagick.spec
+RUN rpmbuild --quiet -ba ImageMagick.spec
